@@ -3,6 +3,7 @@ import styled from "styled-components";
 import lc from "../assets/lc.jpg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
+
 export default function Navbar() {
   const [navbarState, setNavbarState] = useState(false);
   return (
@@ -18,7 +19,7 @@ export default function Navbar() {
               <VscChromeClose onClick={() => setNavbarState(false)} />
             ) : (
               <GiHamburgerMenu onClick={() => setNavbarState(true)} />
-            )} aaaaaa
+            )}
           </div>
         </div>
 
@@ -36,7 +37,6 @@ export default function Navbar() {
             <a href="#testimonials">Testimonials</a>
           </li>
         </ul>
-    
       </Nav>
       <ResponsiveNav state={navbarState}>
         <ul>
@@ -68,11 +68,14 @@ export default function Navbar() {
 
 const Nav = styled.nav`
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  background-color: #E41B17;
+
   .brand {
     .container {
-      color:white;
+      color: white;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -82,14 +85,15 @@ const Nav = styled.nav`
       font-weight: 900;
       text-transform: uppercase;
     }
-    .logo{
-      width:50px;
-      height:50px;
+    .logo {
+      width: 50px;
+      height: 50px;
     }
     .toggle {
       display: none;
     }
   }
+
   ul {
     display: flex;
     gap: 1rem;
@@ -97,7 +101,7 @@ const Nav = styled.nav`
     li {
       a {
         text-decoration: none;
-        color: #0077b6;
+        color: white;
         font-size: 1.2rem;
         transition: 0.1s ease-in-out;
         &:hover {
@@ -106,27 +110,13 @@ const Nav = styled.nav`
       }
       &:first-of-type {
         a {
-          color: #023e8a;
+          color: white;
           font-weight: 900;
         }
       }
     }
   }
-  button {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 1rem;
-    border: none;
-    color: white;
-    background-color: #48cae4;
-    font-size: 1.1rem;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    transition: 0.3s ease-in-out;
-    &:hover {
-      background-color: #023e8a;
-    }
-  }
+
   @media screen and (min-width: 280px) and (max-width: 1080px) {
     .brand {
       display: flex;
@@ -138,9 +128,6 @@ const Nav = styled.nav`
       }
     }
     ul {
-      display: none;
-    }
-    button {
       display: none;
     }
   }
@@ -163,7 +150,6 @@ const ResponsiveNav = styled.div`
       width: 100%;
       margin: 1rem 0;
       margin-left: 2rem;
-
       a {
         text-decoration: none;
         color: #0077b6;
