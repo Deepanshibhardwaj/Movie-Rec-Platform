@@ -200,7 +200,7 @@ const Section = styled.section`
         }
       }
       button {
-        padding: 1rem;
+        padding: 1.5rem;
         cursor: pointer;
         border-radius: 0.3rem;
         border: none;
