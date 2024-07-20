@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import lc from "../assets/lc.jpg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
+
 export default function Navbar() {
   const [navbarState, setNavbarState] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".brand") && navbarState) {
+        setNavbarState(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [navbarState]);
+
   return (
     <>
       <Nav>
@@ -18,7 +34,7 @@ export default function Navbar() {
               <VscChromeClose onClick={() => setNavbarState(false)} />
             ) : (
               <GiHamburgerMenu onClick={() => setNavbarState(true)} />
-            )} aaaaaa
+            )}
           </div>
         </div>
 
@@ -36,7 +52,6 @@ export default function Navbar() {
             <a href="#testimonials">Testimonials</a>
           </li>
         </ul>
-    
       </Nav>
       <ResponsiveNav state={navbarState}>
         <ul>
@@ -66,13 +81,13 @@ export default function Navbar() {
   );
 }
 
-const Nav = styled.nav
+const Nav = styled.nav`
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   .brand {
     .container {
-      color:white;
+      color: white;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -82,9 +97,9 @@ const Nav = styled.nav
       font-weight: 900;
       text-transform: uppercase;
     }
-    .logo{
-      width:50px;
-      height:50px;
+    .logo {
+      width: 50px;
+      height: 50px;
     }
     .toggle {
       display: none;
@@ -144,9 +159,9 @@ const Nav = styled.nav
       display: none;
     }
   }
-;
+`;
 
-const ResponsiveNav = styled.div
+const ResponsiveNav = styled.div`
   display: flex;
   position: absolute;
   z-index: 1;
@@ -163,7 +178,6 @@ const ResponsiveNav = styled.div
       width: 100%;
       margin: 1rem 0;
       margin-left: 2rem;
-
       a {
         text-decoration: none;
         color: #0077b6;
@@ -181,4 +195,4 @@ const ResponsiveNav = styled.div
       }
     }
   }
-;
+`;
